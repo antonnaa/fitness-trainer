@@ -1,115 +1,137 @@
 'use client'
 
-import React, { useState } from 'react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase'
+import { useRouter } from 'next/navigation'
 
-const Footer = () => {
-	const [formData, setFormData] = useState({ name: '', contact: '', message: '' })
-	const [loading, setLoading] = useState(false)
-	const [status, setStatus] = useState<{ type: 'success' | 'error' | null; text: string }>({ type: null, text: '' })
+const Header = () => {
+	const [user, setUser] = useState<any>(null)
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const router = useRouter()
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault()
-		setLoading(true)
-		setStatus({ type: null, text: '' })
+	useEffect(() => {
+		const supabase = createClient()
+		if (!supabase) return
 
-		try {
-			const response = await fetch('/api/send-message', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ ...formData, formType: 'footer' }),
-			})
-
-			if (!response.ok) {
-				const data = await response.json()
-				throw new Error(data.error || 'Ошибка отправки')
-			}
-
-			setStatus({ type: 'success', text: 'Спасибо! Я свяжусь с вами в ближайшее время.' })
-			setFormData({ name: '', contact: '', message: '' })
-		} catch (error: any) {
-			setStatus({ type: 'error', text: error.message || 'Произошла ошибка. Попробуйте позже.' })
-		} finally {
-			setLoading(false)
+		const getUser = async () => {
+			const {
+				data: { user },
+			} = await supabase.auth.getUser()
+			setUser(user)
 		}
+		getUser()
+
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((_event, session) => {
+			setUser(session?.user || null)
+		})
+
+		return () => subscription.unsubscribe()
+	}, [])
+
+	const handleLogout = async () => {
+		const supabase = createClient()
+		if (supabase) {
+			await supabase.auth.signOut()
+		}
+		router.push('/')
+		router.refresh()
+		setIsMenuOpen(false)
 	}
 
+	const closeMenu = () => setIsMenuOpen(false)
+
+	const navLinks = [
+		{ href: '/', label: 'Главная' },
+		{ href: '/about', label: 'Обо мне' },
+		{ href: '/services', label: 'Услуги' },
+		{ href: '/prices', label: 'Цены' },
+		{ href: '/reviews', label: 'Отзывы' },
+		{ href: '/contacts', label: 'Контакты' },
+	]
+
 	return (
-		<footer className='bg-gray-900 text-white pt-10 pb-6 md:pt-12 md:pb-8 mt-auto'>
-			<div className='container mx-auto px-4 sm:px-6'>
-				<div className='grid md:grid-cols-2 gap-8 md:gap-12'>
-					<div>
-						<h3 className='text-xl sm:text-2xl font-bold text-orange-500 mb-3 md:mb-4'>Начни менять себя сейчас</h3>
-						<p className='text-sm sm:text-base text-gray-400 mb-5 md:mb-6'>Оставь заявку, и я свяжусь с тобой в течение 15 минут, чтобы обсудить цели и предложить план действий.</p>
-						<p className='text-xs sm:text-sm text-gray-500'>© 2026 FitPro. Все права защищены.</p>
-					</div>
+		<header className='bg-black text-white shadow-md sticky top-0 z-50'>
+			<nav className='container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center'>
+				{/* Логотип */}
+				<Link href='/' className='text-2xl font-bold text-orange-500 shrink-0'>
+					FIT<span className='text-white'>PRO</span>
+				</Link>
 
-					<div>
-						<form onSubmit={handleSubmit} className='space-y-4 bg-gray-800 p-5 sm:p-6 rounded-xl'>
-							{status.type && (
-								<div
-									className={`p-3 rounded-lg text-sm ${
-										status.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'
-									}`}>
-									{status.text}
-								</div>
-							)}
+				{/* Десктопная навигация */}
+				<div className='hidden md:flex items-center space-x-6 lg:space-x-8'>
+					{navLinks.map((link) => (
+						<Link key={link.href} href={link.href} className='hover:text-orange-400 transition text-sm lg:text-base'>
+							{link.label}
+						</Link>
+					))}
+				</div>
 
-							<div>
-								<label htmlFor='footer-name' className='block text-sm font-medium text-gray-300 mb-1'>
-									Имя *
-								</label>
-								<input
-									type='text'
-									id='footer-name'
-									value={formData.name}
-									onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-									className='w-full px-3 py-2 sm:px-4 sm:py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-white text-sm sm:text-base'
-									placeholder='Алексей'
-									required
-									disabled={loading}
-								/>
-							</div>
-							<div>
-								<label htmlFor='footer-contact' className='block text-sm font-medium text-gray-300 mb-1'>
-									Телефон или Email *
-								</label>
-								<input
-									type='text'
-									id='footer-contact'
-									value={formData.contact}
-									onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-									className='w-full px-3 py-2 sm:px-4 sm:py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-white text-sm sm:text-base'
-									placeholder='+7 (900) 123-45-67'
-									required
-									disabled={loading}
-								/>
-							</div>
-							<div>
-								<label htmlFor='footer-message' className='block text-sm font-medium text-gray-300 mb-1'>
-									Сообщение
-								</label>
-								<textarea
-									id='footer-message'
-									rows={2}
-									value={formData.message}
-									onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-									className='w-full px-3 py-2 sm:px-4 sm:py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-white text-sm sm:text-base'
-									placeholder='Хочу похудеть к лету...'
-									disabled={loading}></textarea>
-							</div>
-							<button
-								type='submit'
-								disabled={loading}
-								className='w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 sm:py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base'>
-								{loading ? 'Отправка...' : 'Отправить заявку'}
+				{/* Кнопка входа/выхода (десктоп) */}
+				<div className='hidden md:flex items-center gap-4'>
+					{user ? (
+						<>
+							<Link href='/dashboard' className='text-white hover:text-orange-400 transition text-sm lg:text-base'>
+								Личный кабинет
+							</Link>
+							<button onClick={handleLogout} className='bg-red-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-red-700 transition'>
+								Выйти
 							</button>
-							<p className='text-xs text-gray-400 text-center mt-2'>Нажимая кнопку, вы соглашаетесь с обработкой данных</p>
-						</form>
+						</>
+					) : (
+						<Link href='/auth/login' className='bg-orange-500 px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition'>
+							Личный кабинет
+						</Link>
+					)}
+				</div>
+
+				{/* Кнопка гамбургера (мобильная) */}
+				<button onClick={() => setIsMenuOpen(!isMenuOpen)} className='md:hidden text-white focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-lg p-2' aria-label='Открыть меню'>
+					{isMenuOpen ? (
+						// Иконка закрытия
+						<svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+							<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+						</svg>
+					) : (
+						// Иконка гамбургера
+						<svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+							<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
+						</svg>
+					)}
+				</button>
+			</nav>
+
+			{/* Мобильное меню */}
+			{isMenuOpen && (
+				<div className='md:hidden bg-gray-900 border-t border-gray-700'>
+					<div className='px-4 py-4 space-y-3'>
+						{navLinks.map((link) => (
+							<Link key={link.href} href={link.href} onClick={closeMenu} className='block px-3 py-2 rounded-lg hover:bg-gray-800 transition text-base font-medium'>
+								{link.label}
+							</Link>
+						))}
+						<hr className='border-gray-700 my-3' />
+						{user ? (
+							<>
+								<Link href='/dashboard' onClick={closeMenu} className='block px-3 py-2 rounded-lg hover:bg-gray-800 transition text-base font-medium'>
+									Личный кабинет
+								</Link>
+								<button onClick={handleLogout} className='w-full text-left px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition text-base font-medium'>
+									Выйти
+								</button>
+							</>
+						) : (
+							<Link href='/auth/login' onClick={closeMenu} className='block px-3 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition text-center text-base font-semibold'>
+								Личный кабинет
+							</Link>
+						)}
 					</div>
 				</div>
-			</div>
-		</footer>
+			)}
+		</header>
 	)
 }
 
-export default Footer
+export default Header
