@@ -13,7 +13,7 @@ export default function Home() {
 					</h1>
 					<p className='text-base sm:text-lg lg:text-xl text-gray-300 mt-4 md:mt-6 max-w-xl'>Индивидуальный план питания и тренировок. Бесплатная консультация и расчет КБЖУ в личном кабинете.</p>
 					<div className='mt-8 md:mt-10 flex flex-col sm:flex-row gap-4'>
-						<Link href='/auth/register' className='bg-orange-500 hover:bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg text-center transition'>
+						<Link href='/contacts' className='bg-orange-500 hover:bg-orange-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg text-center transition'>
 							Попробовать бесплатно
 						</Link>
 						<Link href='/about' className='border border-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg text-center transition'>

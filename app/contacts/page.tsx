@@ -81,9 +81,9 @@ export default function Contacts() {
 									<div>
 										<h4 className='font-semibold text-gray-900'>Адрес</h4>
 										<p className='text-gray-600'>
-											[Ваш город], [Улица, дом]
+											Нижний Новгород, Белинского 124
 											<br />
-											Фитнес-клуб "[Название]"
+											Сеть клубов "Физкульт"
 										</p>
 									</div>
 								</div>
@@ -93,8 +93,8 @@ export default function Contacts() {
 									<div>
 										<h4 className='font-semibold text-gray-900'>Телефон</h4>
 										<p className='text-gray-600'>
-											<a href='tel:+79001234567' className='hover:text-orange-500'>
-												+7 (900) 123-45-67
+											<a href='tel:+79087262857' className='hover:text-orange-500'>
+												+7 (908) 726-28-57
 											</a>
 										</p>
 									</div>
@@ -105,8 +105,8 @@ export default function Contacts() {
 									<div>
 										<h4 className='font-semibold text-gray-900'>Email</h4>
 										<p className='text-gray-600'>
-											<a href='mailto:trainer@example.com' className='hover:text-orange-500'>
-												trainer@example.com
+											<a href='mailto:antonio-03@mail.ru' className='hover:text-orange-500'>
+												antonio-03@mail.ru
 											</a>
 										</p>
 									</div>
@@ -131,10 +131,8 @@ export default function Contacts() {
 							<h3 className='text-xl font-bold mb-4'>Социальные сети</h3>
 							<div className='flex space-x-4'>
 								{[
-									{ name: 'Instagram', icon: '📷', url: '#' },
-									{ name: 'Telegram', icon: '✈️', url: '#' },
-									{ name: 'WhatsApp', icon: '💬', url: '#' },
-									{ name: 'YouTube', icon: '▶️', url: '#' },
+									{ name: 'Telegram', icon: '✈️', url: 'https://vk.com/antonna_03' },
+									{ name: 'VK', icon: '✈️', url: 'https://t.me/ANTONNA_03' },
 								].map((social, idx) => (
 									<a
 										key={idx}
@@ -233,10 +231,34 @@ export default function Contacts() {
 					</div>
 				</div>
 
-				{/* Карта */}
-				<div className='mt-12 bg-white rounded-2xl shadow-lg p-4 max-w-6xl mx-auto'>
-					<div className='bg-gray-200 h-64 rounded-lg flex items-center justify-center'>
-						<p className='text-gray-600'>🗺️ Здесь будет карта (можно вставить Яндекс.Карты или Google Maps)</p>
+				{/* Яндекс.Карта */}
+				<div className='mt-10 md:mt-12 bg-white rounded-2xl shadow-lg overflow-hidden max-w-7xl mx-auto'>
+					<div className='p-4 sm:p-6'>
+						<h3 className='text-lg sm:text-xl font-bold mb-4'>Как добраться</h3>
+						<p className='text-sm sm:text-base text-gray-600 mb-4'>г. Нижний Новгород, ул. Белинского, 124, 603024</p>
+					</div>
+					<div className='relative w-full' style={{ height: '400px' }}>
+						<iframe
+							src='https://yandex.ru/map-widget/v1/?ll=44.026719%2C56.319410&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Njk4MDU0ORJR0KDQvtGB0YHQuNGPLCDQndC40LbQvdC40Lkg0J3QvtCy0LPQvtGA0L7QtCwg0YPQu9C40YbQsCDQkdC10LvQuNC90YHQutC-0LPQviwgMTI0IgoNXRswQhUTR2FC&z=16'
+							width='100%'
+							height='100%'
+							frameBorder='0'
+							allowFullScreen={true}
+							style={{ position: 'absolute', top: 0, left: 0, border: 'none' }}
+							title='Яндекс Карта — Белинского, 124'></iframe>
+					</div>
+					{/* Ссылки над картой (как в исходном коде) */}
+					<div className='px-4 sm:px-6 py-2 bg-gray-100 text-xs text-gray-500 flex flex-wrap gap-x-4 gap-y-1'>
+						<a href='https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps' target='_blank' rel='noopener noreferrer' className='hover:text-orange-500 transition'>
+							Нижний Новгород
+						</a>
+						<a
+							href='https://yandex.ru/maps/47/nizhny-novgorod/house/ulitsa_belinskogo_124/YE0YdgVmTkcHQFtsfX9weHhjbQ==/?ll=44.026719%2C56.319410&utm_medium=mapframe&utm_source=maps&z=16'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='hover:text-orange-500 transition'>
+							Улица Белинского, 124 — Яндекс Карты
+						</a>
 					</div>
 				</div>
 			</div>
