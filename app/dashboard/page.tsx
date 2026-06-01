@@ -171,9 +171,14 @@ export default function Dashboard() {
 								<label className='block text-sm font-medium text-gray-700 mb-1'>Вес (кг)</label>
 								<input
 									type='number'
+									min='0'
 									step='0.1'
 									value={profile?.weight || ''}
-									onChange={(e) => setProfile({ ...profile!, weight: parseFloat(e.target.value) || null })}
+									onChange={(e) => {
+										const value = parseFloat(e.target.value)
+										if (value < 0) return // блокируем отрицательные
+										setProfile({ ...profile!, weight: value || null })
+									}}
 									className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500'
 									placeholder='70'
 								/>
@@ -183,8 +188,13 @@ export default function Dashboard() {
 								<label className='block text-sm font-medium text-gray-700 mb-1'>Рост (см)</label>
 								<input
 									type='number'
+									min='0'
 									value={profile?.height || ''}
-									onChange={(e) => setProfile({ ...profile!, height: parseFloat(e.target.value) || null })}
+									onChange={(e) => {
+										const value = parseFloat(e.target.value)
+										if (value < 0) return
+										setProfile({ ...profile!, height: value || null })
+									}}
 									className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500'
 									placeholder='175'
 								/>
@@ -194,8 +204,14 @@ export default function Dashboard() {
 								<label className='block text-sm font-medium text-gray-700 mb-1'>Возраст</label>
 								<input
 									type='number'
+									min='0'
+									max='150'
 									value={profile?.age || ''}
-									onChange={(e) => setProfile({ ...profile!, age: parseInt(e.target.value) || null })}
+									onChange={(e) => {
+										const value = parseInt(e.target.value)
+										if (value < 0 || value > 150) return
+										setProfile({ ...profile!, age: value || null })
+									}}
 									className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500'
 									placeholder='30'
 								/>
