@@ -60,6 +60,17 @@ export default function Dashboard() {
 			return
 		}
 
+		// Дополнительная проверка на отрицательные и нулевые значения
+		if (profile.weight <= 0 || profile.height <= 0 || profile.age <= 0) {
+			setMessage({ type: 'error', text: 'Вес, рост и возраст должны быть положительными числами' })
+			return
+		}
+
+		if (profile.weight > 300 || profile.height > 250 || profile.age > 150) {
+			setMessage({ type: 'error', text: 'Проверьте корректность введённых данных' })
+			return
+		}
+
 		let bmr
 		if (profile.gender === 'female') {
 			bmr = 447.6 + 9.2 * profile.weight + 3.1 * profile.height - 4.3 * profile.age
