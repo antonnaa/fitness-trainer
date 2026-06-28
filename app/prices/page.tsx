@@ -49,8 +49,8 @@ export default function Prices() {
 
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
 					{packages.map((pkg, idx) => (
-						<div key={idx} className={`bg-black rounded-2xl shadow-lg overflow-hidden ${pkg.popular ? 'border-2 border-orange-500 transform scale-105' : ''}`}>
-							<div className={`bg-${pkg.color}-900 text-white p-6 text-center`}>
+						<div key={idx} className={`bg-white rounded-2xl shadow-lg overflow-hidden ${pkg.popular ? 'border-2 border-orange-500 transform scale-105' : ''}`}>
+							<div className={`bg-${pkg.color}-900 text-black p-6 text-center`}>
 								<h3 className='text-xl font-bold mb-1'>{pkg.name}</h3>
 								<div className='text-3xl font-bold mb-1'>{pkg.price}</div>
 								<div className='text-sm opacity-90'>{pkg.duration}</div>
