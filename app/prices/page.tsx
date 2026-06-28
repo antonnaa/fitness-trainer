@@ -66,7 +66,7 @@ export default function Prices() {
 									))}
 								</ul>
 								<Link
-									href='/auth/register'
+									href='/contacts'
 									className={`block w-full text-center py-2 rounded-lg font-semibold transition ${
 										pkg.popular ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
 									}`}>

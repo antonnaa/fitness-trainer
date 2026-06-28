@@ -65,7 +65,7 @@ export default function Services() {
 										</li>
 									))}
 								</ul>
-								<Link href='/auth/register' className='block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition'>
+								<Link href='/contacts' className='block w-full text-center bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition'>
 									Выбрать
 								</Link>
 							</div>
