@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 
 export default function Prices() {
@@ -8,24 +10,26 @@ export default function Prices() {
 			duration: '60 минут',
 			description: 'Знакомство, тестирование, определение целей',
 			features: ['Консультация по целям', 'Оценка физической формы', 'Пробная тренировка', 'Рекомендации по питанию'],
-			color: 'gray',
+			headerClass: 'bg-gray-700 text-white',
+			popular: false,
 		},
 		{
 			name: 'Базовый',
-			price: '13 000 ₽',
+			price: '8000 ₽',
 			duration: 'месяц',
 			description: '8 персональных тренировок',
 			features: ['2 тренировки в неделю', 'Программа тренировок', 'Контроль питания', 'Чат поддержка'],
-			color: 'orange',
+			headerClass: 'bg-orange-500 text-white',
 			popular: true,
 		},
 		{
 			name: 'Оптимальный',
-			price: '18000 ₽',
+			price: '14000 ₽',
 			duration: 'месяц',
 			description: '12 персональных тренировок',
 			features: ['3 тренировки в неделю', 'Индивидуальная программа', 'План питания с КБЖУ', 'Чат поддержка 24/7', 'Видео-отчеты'],
-			color: 'orange',
+			headerClass: 'bg-orange-600 text-white',
+			popular: false,
 		},
 		{
 			name: 'VIP',
@@ -33,7 +37,8 @@ export default function Prices() {
 			duration: 'месяц',
 			description: 'Полное сопровождение',
 			features: ['Неограниченное количество тренировок', 'Выезд к клиенту', 'Персональный план питания', 'VIP поддержка 24/7', 'Анализ состава тела', 'Спортивное питание в подарок'],
-			color: 'black',
+			headerClass: 'bg-black text-white',
+			popular: false,
 		},
 	]
 
@@ -50,7 +55,7 @@ export default function Prices() {
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
 					{packages.map((pkg, idx) => (
 						<div key={idx} className={`bg-white rounded-2xl shadow-lg overflow-hidden ${pkg.popular ? 'border-2 border-orange-500 transform scale-105' : ''}`}>
-							<div className={`bg-${pkg.color}-900 text-white p-6 text-center`}>
+							<div className={`${pkg.headerClass} p-6 text-center`}>
 								<h3 className='text-xl font-bold mb-1'>{pkg.name}</h3>
 								<div className='text-3xl font-bold mb-1'>{pkg.price}</div>
 								<div className='text-sm opacity-90'>{pkg.duration}</div>
@@ -66,7 +71,7 @@ export default function Prices() {
 									))}
 								</ul>
 								<Link
-									href='/contacts'
+									href='/auth/register'
 									className={`block w-full text-center py-2 rounded-lg font-semibold transition ${
 										pkg.popular ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
 									}`}>
