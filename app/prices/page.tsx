@@ -1,6 +1,12 @@
 import Link from 'next/link'
 
 export default function Prices() {
+	const colorClasses = {
+		gray: 'bg-gray-900',
+		orange: 'bg-orange-500', // или bg-orange-600, bg-orange-700 и т.д.
+		black: 'bg-black',
+	}
+
 	const packages = [
 		{
 			name: 'Пробное занятие',
@@ -50,7 +56,7 @@ export default function Prices() {
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
 					{packages.map((pkg, idx) => (
 						<div key={idx} className={`bg-white rounded-2xl shadow-lg overflow-hidden ${pkg.popular ? 'border-2 border-orange-500 transform scale-105' : ''}`}>
-							<div className={`bg-${pkg.color}-900 text-white p-6 text-center`}>
+							<div className={`${colorClasses[pkg.color]} text-white p-6 text-center`}>
 								<h3 className='text-xl font-bold mb-1'>{pkg.name}</h3>
 								<div className='text-3xl font-bold mb-1'>{pkg.price}</div>
 								<div className='text-sm opacity-90'>{pkg.duration}</div>
