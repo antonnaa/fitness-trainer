@@ -21,7 +21,6 @@ export default function Contacts() {
 		setStatus({ type: null, text: '' })
 
 		try {
-			// Формируем сообщение с целью
 			const goalText = formData.goal ? `\nЦель: ${formData.goal}` : ''
 			const fullMessage = `${formData.message}${goalText}`
 
@@ -83,7 +82,7 @@ export default function Contacts() {
 										<p className='text-gray-600'>
 											Нижний Новгород, Белинского 124
 											<br />
-											Сеть клубов "Физкульт"
+											Сеть клубов &laquo;Физкульт&raquo;
 										</p>
 									</div>
 								</div>
@@ -127,40 +126,40 @@ export default function Contacts() {
 						</div>
 
 						{/* Социальные сети */}
-					<div className='bg-white rounded-2xl shadow-lg p-8'>
-						<h3 className='text-xl font-bold mb-4'>Социальные сети</h3>
-						<div className='flex space-x-4'>
-							{[
-									{ 
-										name: 'Telegram', 
+						<div className='bg-white rounded-2xl shadow-lg p-8'>
+							<h3 className='text-xl font-bold mb-4'>Социальные сети</h3>
+							<div className='flex space-x-4'>
+								{[
+									{
+										name: 'VK',
 										icon: (
-											<svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-													<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.938z"/>
+											<svg className='w-6 h-6' viewBox='0 0 24 24' fill='currentColor'>
+												<path d='M15.684 0H8.316C3.725 0 0 3.725 0 8.316v7.368C0 20.275 3.725 24 8.316 24h7.368C20.275 24 24 20.275 24 15.684V8.316C24 3.725 20.275 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.523-2.049-1.723-1.033-1.001-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .423-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.201C5.48 12.15 4.27 8.366 4.27 8.214c0-.203.152-.39.508-.39h1.744c.406 0 .559.186.66.643.745 2.168 1.998 4.066 2.506 4.066.203 0 .305-.288.305-.678V9.388c-.067-1.117-.661-1.218-.661-1.625 0-.17.136-.305.355-.305h2.743c.305 0 .423.17.423.542v2.896c0 .305.136.407.22.407.186 0 .34-.101.661-.44 1.016-1.134 1.744-2.88 1.744-2.88.1-.27.29-.44.66-.44h1.743c.423 0 .525.22.423.542-.17.796-1.828 3.133-1.828 3.133-.152.254-.203.372 0 .66.152.22.66.644 1.016 1.015.66.677 1.168 1.252 1.168 1.524.017.424-.237.627-.66.627z' />
 											</svg>
-										), 
-										url: 'https://t.me/ANTONNA_03' 
+										),
+										url: 'https://vk.com/antonna_03',
 									},
-									{ 
-										name: 'VK', 
+									{
+										name: 'Telegram',
 										icon: (
-											<svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-													<path d="M15.684 0H8.316C3.725 0 0 3.725 0 8.316v7.368C0 20.275 3.725 24 8.316 24h7.368C20.275 24 24 20.275 24 15.684V8.316C24 3.725 20.275 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.523-2.049-1.723-1.033-1.001-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .423-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.201C5.48 12.15 4.27 8.366 4.27 8.214c0-.203.152-.39.508-.39h1.744c.406 0 .559.186.66.643.745 2.168 1.998 4.066 2.506 4.066.203 0 .305-.288.305-.678V9.388c-.067-1.117-.661-1.218-.661-1.625 0-.17.136-.305.355-.305h2.743c.305 0 .423.17.423.542v2.896c0 .305.136.407.22.407.186 0 .34-.101.661-.44 1.016-1.134 1.744-2.88 1.744-2.88.1-.27.29-.44.66-.44h1.743c.423 0 .525.22.423.542-.17.796-1.828 3.133-1.828 3.133-.152.254-.203.372 0 .66.152.22.66.644 1.016 1.015.66.677 1.168 1.252 1.168 1.524.017.424-.237.627-.66.627z"/>
+											<svg className='w-6 h-6' viewBox='0 0 24 24' fill='currentColor'>
+												<path d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.938z' />
 											</svg>
-										), 
-										url: 'https://vk.com/antonna_03' 
+										),
+										url: 'https://t.me/ANTONNA_03',
 									},
-							].map((social, idx) => (
+								].map((social, idx) => (
 									<a
 										key={idx}
 										href={social.url}
 										target='_blank'
 										rel='noopener noreferrer'
 										className='w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-orange-500 hover:text-white transition'
-										title={social.name}
-									>
+										title={social.name}>
 										{social.icon}
 									</a>
-							))}
+								))}
+							</div>
 						</div>
 					</div>
 
@@ -211,7 +210,7 @@ export default function Contacts() {
 									id='contact-goal'
 									value={formData.goal}
 									onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-									className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500'
+									className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white'
 									disabled={loading}>
 									<option value=''>Выберите цель</option>
 									<option value='Снижение веса'>Снижение веса</option>
@@ -265,7 +264,6 @@ export default function Contacts() {
 							style={{ position: 'absolute', top: 0, left: 0, border: 'none' }}
 							title='Яндекс Карта — Белинского, 124'></iframe>
 					</div>
-					{/* Ссылки над картой (как в исходном коде) */}
 					<div className='px-4 sm:px-6 py-2 bg-gray-100 text-xs text-gray-500 flex flex-wrap gap-x-4 gap-y-1'>
 						<a href='https://yandex.ru/maps/47/nizhny-novgorod/?utm_medium=mapframe&utm_source=maps' target='_blank' rel='noopener noreferrer' className='hover:text-orange-500 transition'>
 							Нижний Новгород
