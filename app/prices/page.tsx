@@ -28,7 +28,7 @@ export default function Prices() {
 			duration: 'месяц',
 			description: '12 персональных тренировок',
 			features: ['3 тренировки в неделю', 'Индивидуальная программа', 'План питания с КБЖУ', 'Чат поддержка 24/7', 'Видео-отчеты'],
-			headerClass: 'bg-orange-600 text-white',
+			headerClass: 'bg-orange-500 text-white',
 			popular: false,
 		},
 		{
