@@ -29,11 +29,9 @@ ${message ? `💬 <b>Сообщение:</b>\n${message}` : ''}
 🕐 <b>Время:</b> ${new Date().toLocaleString('ru-RU')}
     `
 
-		// Пробуем разные способы отправки
 		let sent = false
 		let lastError = null
 
-		// Способ 1: Прямое подключение с увеличенным таймаутом
 		try {
 			const controller = new AbortController()
 			const timeoutId = setTimeout(() => controller.abort(), 30000)
@@ -61,13 +59,11 @@ ${message ? `💬 <b>Сообщение:</b>\n${message}` : ''}
 			console.log('Direct connection failed, trying alternatives...')
 		}
 
-		// Способ 2: Если не получилось, сохраняем в локальный файл (для демонстрации)
 		if (!sent) {
 			console.log('=== НОВАЯ ЗАЯВКА ===')
 			console.log(telegramMessage.replace(/<[^>]+>/g, '')) // Без HTML тегов
 			console.log('===================')
 
-			// Для диплома можно сказать, что сообщение сохранено в лог
 			return NextResponse.json({
 				success: true,
 				method: 'console',
